@@ -1,0 +1,34 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "type": "string",
+            "metadata": "Data Factory name",
+            "defaultValue": "datafactory123415"
+        },
+        "linkedServiceName": {
+            "type": "string",
+            "metadata": "Data Factory Linked Service name",
+        },
+        "baseUrl": {
+            "type": "string",
+            "metadata": "Data Factory Linked Service name",
+        }
+    },
+    "resources": [{
+            "name": "[concat(parameters('factoryName'), '/', parameters('linkedServiceName'))]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "type": "AzureKeyVault",
+                "typeProperties": {
+                    "baseUrl": "[parameters('baseUrl')]"
+                }
+            }
+        }
+
+    ],
+    "outputs": {}
+}

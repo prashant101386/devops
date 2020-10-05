@@ -1,0 +1,55 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "type": "string"
+        },
+        "linkedServiceName": {
+            "type": "string"
+        },
+        "domain": {
+            "type": "string"
+        },
+        "secretName": {
+            "type": "securestring"
+        },
+        "keyVaultLinkedServiceName": {
+            "type": "string"
+        },
+        "newClusterNodeType": {
+            "type": "string"
+        },
+        "newClusterNumOfWorker": {
+            "type": "string"
+        },
+        "newClusterVersion": {
+            "type": "string"
+        }
+    },
+
+    "resources": [{
+        "name": "[concat(parameters('factoryName'), '/', parameters('linkedServiceName'))]",
+        "type": "Microsoft.DataFactory/factories/linkedServices",
+        "apiVersion": "2018-06-01",
+        "properties": {
+            "annotations": [],
+            "type": "AzureDatabricks",
+            "typeProperties": {
+                "domain": "[parameters('domain')]",
+                "accessToken": {
+                    "type": "AzureKeyVaultSecret",
+                    "store": {
+                        "referenceName": "[parameters('keyVaultLinkedServiceName')]",
+                        "type": "LinkedServiceReference"
+                    },
+                    "secretName": "[parameters('secretName')]"
+                },
+                "newClusterNodeType": "[parameters('newClusterNodeType')]",
+                "newClusterNumOfWorker": "[parameters('newClusterNumOfWorker')]",
+                "newClusterVersion": "[parameters('newClusterVersion')]"
+            }
+        }
+    }],
+    "outputs": {}
+}

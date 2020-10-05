@@ -1,0 +1,10 @@
+{
+    "cluster_name": "shared1-cluster",
+    "spark_version": "6.4.x-scala2.11",
+    "node_type_id": "Standard_DS3_v2",
+    "spark_conf": {
+        "spark.speculation": false
+    },
+    "num_workers": 1,
+    "public_ip": false
+}

@@ -1,0 +1,43 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "type": "string",
+            "defaultValue": "datafactory123415"
+        },
+        "linkedServiceName": {
+            "type": "string"
+        },
+        "baseUrl": {
+            "type": "string"
+        },
+        "secretName": {
+            "type": "securestring"
+        },
+        "keyVaultLinkedServiceName": {
+            "type": "string"
+        }
+    },
+    "resources": [{
+        "name": "[concat(parameters('factoryName'), '/', parameters('linkedServiceName'))]",
+        "type": "Microsoft.DataFactory/factories/linkedservices",
+        "apiVersion": "2018-06-01",
+        "properties": {
+            "annotations": [],
+            "type": "AzureBlobFS",
+            "typeProperties": {
+                "url": "[parameters('baseUrl')]",
+                "accountKey": {
+                    "type": "AzureKeyVaultSecret",
+                    "store": {
+                        "referenceName": "[parameters('keyVaultLinkedServiceName')]",
+                        "type": "LinkedServiceReference"
+                    },
+                    "secretName": "[parameters('secretName')]"
+                }
+            }
+        }
+    }],
+    "outputs": {}
+}
