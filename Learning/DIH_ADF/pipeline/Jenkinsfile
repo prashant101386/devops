@@ -19,16 +19,16 @@ node ('JC') {
          string(credentialsId: 'tenantID', variable: 'ARM_TENANT_ID'),
       ]){
                      withEnv(["TF_LOG=ERROR"]){
-                     sh 'az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID'
-                     sh 'az account set --subscription=$ARM_SUBSCRIPTION_ID'
+                     bat 'az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID'
+                     bat 'az account set --subscription=$ARM_SUBSCRIPTION_ID'
 
-                     sh """
+                     bat """
                            terraform init \
                                        -reconfigure \
                                        -input=false \
                                        ./Learning/DIH_ADF
                      """
-                     sh """
+                     bat """
                            terraform ${params.ApplyOrDestroy} -auto-approve \
                                                                -var-file ./Learning/DIH_ADF/devinput.vars \
                                                                -var "access_key=${TF_VAR_backend_state}" \
