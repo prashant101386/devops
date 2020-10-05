@@ -19,9 +19,7 @@ node ('JC') {
          string(credentialsId: 'clientSecret', variable: 'ARM_CLIENT_SECRET'),
          string(credentialsId: 'tenantID', variable: 'ARM_TENANT_ID'),
       ]){
-         withEnv(["http_proxy=http://appproxy.us164.corpintra.net:3128"]){
-            withEnv(["https_proxy=http://appproxy.us164.corpintra.net:3128"]){
-                  withEnv(["TF_LOG=ERROR"]){
+                     withEnv(["TF_LOG=ERROR"]){
                      sh 'az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID'
                      sh 'az account set --subscription=$ARM_SUBSCRIPTION_ID'
 
@@ -34,17 +32,16 @@ node ('JC') {
                                        -backend-config="storage_account_name=${params.besStorageAccount}" \
                                        -backend-config="container_name=${params.besContainerName}" \
                                        -backend-config="key=${params.besKey}" \
-                                       ./environment/dataIntelligencePlatform/DIH_ADF
+                                       ./Learning/DIH_ADF
                      """
                      sh """
                            terraform ${params.ApplyOrDestroy} -auto-approve \
-                                                               -var-file ./environment/dataIntelligencePlatform/DIH_ADF/${params.environmentLevel}input.vars \
+                                                               -var-file ./Learning/DIH_ADF/devinput.vars \
                                                                -var "access_key=${TF_VAR_backend_state}" \
-                                                               ./environment/dataIntelligencePlatform/DIH_ADF
+                                                               ./Learning/DIH_ADF
                      """
                   }
             }
          }
       }
-   }
-}
+   
