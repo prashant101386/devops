@@ -19,7 +19,7 @@ node ('JC') {
          string(credentialsId: 'tenantID', variable: 'ARM_TENANT_ID'),
       ]){
                      withEnv(["TF_LOG=ERROR"]){
-                     bat "az login --service-principal --username prashant.101386@gmail.com --password kA03jL3661@ --tenant $ARM_TENANT_ID"
+                     bat "az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID"
                      bat "az account set --subscription=$ARM_SUBSCRIPTION_ID"
 
                      bat """
