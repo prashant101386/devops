@@ -31,7 +31,6 @@ node ('JC') {
                      bat """
                            terraform ${params.ApplyOrDestroy} -auto-approve \
                                                                -var-file ./Learning/DIH_ADF/devinput.vars \
-                                                               -var "access_key=${TF_VAR_backend_state}" \
                                                                ./Learning/DIH_ADF
                      """
                   }
