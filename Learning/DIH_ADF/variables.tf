@@ -23,3 +23,7 @@ variable "tenant_id" {
 variable "tags" {
   
 }
+
+variable "integration_runtime_name" {
+  
+}
