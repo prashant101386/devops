@@ -13,7 +13,6 @@ node ('JC') {
          string(credentialsId: 'clientID', variable: 'TF_VAR_client_id'),
          string(credentialsId: 'clientSecret', variable: 'TF_VAR_client_secret'),
          string(credentialsId: 'tenantID', variable: 'TF_VAR_tenant_id'),
-         string(credentialsId: 'backEndStateAccessKey', variable: 'TF_VAR_backend_state'),
          string(credentialsId: 'subscriptionID', variable: 'ARM_SUBSCRIPTION_ID'),
          string(credentialsId: 'clientID', variable: 'ARM_CLIENT_ID'),
          string(credentialsId: 'clientSecret', variable: 'ARM_CLIENT_SECRET'),
@@ -27,11 +26,6 @@ node ('JC') {
                            terraform init \
                                        -reconfigure \
                                        -input=false \
-                                       -backend-config="access_key=$TF_VAR_backend_state" \
-                                       -backend-config="resource_group_name=${params.besResourceGroup}" \
-                                       -backend-config="storage_account_name=${params.besStorageAccount}" \
-                                       -backend-config="container_name=${params.besContainerName}" \
-                                       -backend-config="key=${params.besKey}" \
                                        ./Learning/DIH_ADF
                      """
                      sh """
