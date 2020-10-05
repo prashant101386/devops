@@ -1,4 +1,4 @@
-node ('DIPLATFORM_STNAACVDL237_ITC-NM') {
+node ('JC') {
 
    stage('Init') {
       checkout scm
