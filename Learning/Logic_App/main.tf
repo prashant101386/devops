@@ -15,22 +15,14 @@ provider "azurerm" {
 
   resource_group_name     = var.resource_group_name
   resource_group_location = "westus2"
-  tags                    = var.tags
-}
-####################################################################Data Factory
-  module "data_factory" {
-  source = "../modules/dataFactory"
+  }
+####################################################################Logic App
+  module "logic_app" {
+  source = "../modules/logicApp"
 
-  data_factory_name   = var.data_factory_name
+  logic_app_name      = var.logic_app_name
   resource_group_name = module.shared_adf_resource_group.resource_group_name
   location            = module.shared_adf_resource_group.resource_group_location
-  tags                = var.tags
 }
-####################################################################Integration Runtime
-module "integration_runtime" {
-  source = "../modules/dataFactory/integrationRuntimes"
-  name                = var.integration_runtime_name
-  resource_group_name = module.shared_adf_resource_group.resource_group_name
-  data_factory_name   = var.data_factory_name
-}
+
 
