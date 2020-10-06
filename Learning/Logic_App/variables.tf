@@ -19,3 +19,5 @@ variable "client_secret" {
 variable "tenant_id" {
   description = "Enter Tenant ID / Directory ID of your Azure AD" 
 }
+
+variable "resource_group_location" {}
