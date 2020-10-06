@@ -2,7 +2,7 @@
 variable "resource_group_name" {
   description = "Resource group for shared ADF"
 }
-variable "data_factory_name" {}
+variable "logic_app_name" {}
 
 variable "subscription_id" {
   description = "Enter subscription ID for provisioning resources in Azure" 
@@ -18,12 +18,4 @@ variable "client_secret" {
 
 variable "tenant_id" {
   description = "Enter Tenant ID / Directory ID of your Azure AD" 
-}
-
-variable "tags" {
-  
-}
-
-variable "integration_runtime_name" {
-  
 }
