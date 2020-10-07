@@ -22,4 +22,3 @@ variable "tenant_id" {
 
 variable "resource_group_location" {}
 
-variable "location" {}
