@@ -13,8 +13,8 @@ provider "azurerm" {
   module "shared_adf_resource_group" {
   source = "../modules/resourceGroup"
 
-  resource_group_name     = var.resource_group_name1
-  resource_group_location1 = var.resource_group_location2
+  resource_group_name     = var.resource_group_name
+  resource_group_location = var.resource_group_location
   }
 ####################################################################Logic App
   module "logic_app" {
@@ -22,7 +22,7 @@ provider "azurerm" {
 
   logic_app_name          = var.logic_app_name
   resource_group_name     = module.shared_adf_resource_group.resource_group_name
-  resource_group_location = module.shared_adf_resource_group.resource_group_location1
+  resource_group_location = module.shared_adf_resource_group.resource_group_location
 }
 
 
