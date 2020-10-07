@@ -13,8 +13,8 @@ provider "azurerm" {
   module "shared_adf_resource_group" {
   source = "../modules/resourceGroup"
 
-  resource_group_name     = var.resource_group_name
-  resource_group_location = "westindia"
+  resource_group_name     = var.resource_group_name1
+  resource_group_location = var.resource_group_location1
   }
 ####################################################################Logic App
   module "logic_app" {
