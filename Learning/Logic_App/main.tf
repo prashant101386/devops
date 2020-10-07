@@ -14,7 +14,7 @@ provider "azurerm" {
   source = "../modules/resourceGroup"
 
   resource_group_name     = var.resource_group_name
-  resource_group_location = "westus2"
+  resource_group_location = "westindia"
   }
 ####################################################################Logic App
   module "logic_app" {
