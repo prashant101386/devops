@@ -1,5 +1,5 @@
 
-variable "resource_group_name1" {
+variable "resource_group_name" {
   description = "Resource group for shared ADF"
 }
 variable "logic_app_name" {}
@@ -20,8 +20,6 @@ variable "tenant_id" {
   description = "Enter Tenant ID / Directory ID of your Azure AD" 
 }
 
-variable "resource_group_location1" {}
+variable "resource_group_location" {}
 
 variable "location" {}
-
-variable "resource_group_location2" {}
