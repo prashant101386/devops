@@ -23,3 +23,5 @@ variable "tenant_id" {
 variable "resource_group_location1" {}
 
 variable "location" {}
+
+variable "resource_group_location2" {}
