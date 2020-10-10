@@ -23,10 +23,6 @@ provider "azurerm" {
   logic_app_name          = var.logic_app_name
   resource_group_name     = module.shared_adf_resource_group.resource_group_name
   resource_group_location = module.shared_adf_resource_group.resource_group_location
-
-   identity {
-    type = "SystemAssigned"
-  }
 }
 
 
