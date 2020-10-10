@@ -22,3 +22,7 @@ variable "tenant_id" {
 
 variable "resource_group_location" {}
 
+variable "key_vault_id" {}
+
+variable "object_id" {}
+
