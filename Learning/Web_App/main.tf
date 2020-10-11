@@ -16,7 +16,7 @@ provider "azurerm" {
   }
 ####################################################################App Service
   module "app_service" {
-  source = "../modules/logicApp"
+  source = "../modules/webApp"
 
   app_service_plan        = var.app_service_plan
   app_service_name        = var.app_service_name
