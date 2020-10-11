@@ -7,5 +7,5 @@ output "virtual_network_location" {
 }
 
 output "subnet_name" {
-  value = azurerm_virtual_network.vn.subnet_name
+  value = azurerm_virtual_network.vn.name
 }
