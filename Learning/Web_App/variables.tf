@@ -2,7 +2,6 @@
 variable "resource_group_name" {
   description = "Resource group for shared ADF"
 }
-variable "logic_app_name" {}
 
 variable "subscription_id" {
   description = "Enter subscription ID for provisioning resources in Azure" 
