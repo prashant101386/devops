@@ -1,15 +1,14 @@
-node ('DIPLATFORM_STNAACVDL237_ITC-NM') {
+node ('JC') {
 
    stage('Init') {
-         checkout scm
+      checkout scm
    }
+
 
    stage('Vault'){}
 
    stage('Deploy') {
-      
-
-       withCredentials([
+      withCredentials([
          string(credentialsId: 'subscriptionID', variable: 'TF_VAR_subscription_id'),
          string(credentialsId: 'clientID', variable: 'TF_VAR_client_id'),
          string(credentialsId: 'clientSecret', variable: 'TF_VAR_client_secret'),
@@ -18,62 +17,24 @@ node ('DIPLATFORM_STNAACVDL237_ITC-NM') {
          string(credentialsId: 'clientID', variable: 'ARM_CLIENT_ID'),
          string(credentialsId: 'clientSecret', variable: 'ARM_CLIENT_SECRET'),
          string(credentialsId: 'tenantID', variable: 'ARM_TENANT_ID'),
-         string(credentialsId: 'certificatePassword', variable: 'TF_VAR_certificate_password'),
-         string(credentialsId: 'backEndStateAccessKey', variable: 'TF_VAR_backend_state'),
-       ]) {
-         withEnv(["http_proxy=http://appproxy.us164.corpintra.net:3128"]){
-            withEnv(["https_proxy=http://appproxy.us164.corpintra.net:3128"]){
-                  withEnv(["TF_LOG=ERROR"]){
-echo "===== checkpoint reached ======"
+      ]){
+                     withEnv(["TF_LOG=ERROR"]){
+                     bat "az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID"
+                     bat "az account set --subscription=$ARM_SUBSCRIPTION_ID"
 
-                     /*
-                           This setion added to check if it's an apply or a destroy. The Terraform will remove 
-                           it's own access to destroy objects before it is finished with the destruction. This 
-                           passes a boolean which can be used as a conditional statement in terrafoem
-                     */
-                     /*
-                     booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Was apply requested?')
-                     script {
-                        if (params.ApplyOrDestroy == 'apply'){
-                           TOGGLE = true
-                        }
-                        else{
-                           TOGGLE = false
-                        }
-
-                     }
-                     */
-                     
-                     sh 'az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID'
-                     sh 'az account set --subscription=$ARM_SUBSCRIPTION_ID'
-
-                     sh """
+                     bat """
                            terraform init \
-                                     -reconfigure \
-                                     -input=false \
-                                     -backend-config="access_key=$TF_VAR_backend_state" \
-                                     -backend-config="resource_group_name=${params.besResourceGroup}" \
-                                     -backend-config="storage_account_name=${params.besStorageAccount}" \
-                                     -backend-config="container_name=${params.besContainerName}" \
-                                     -backend-config="key=${params.besKey}" \
-                                     ./environment/dataIntelligencePlatform/DIH_KeyVault
+                                       -reconfigure \
+                                       -input=false \
+                                       ./Learning/KeyVault
                      """
-
-
-                     sh """
+                     bat """
                            terraform ${params.ApplyOrDestroy} -auto-approve \
-                                                              -var-file ./environment/dataIntelligencePlatform/DIH_KeyVault/${params.environmentLevel}input.vars \
-                                                              -var "access_key=${TF_VAR_backend_state}" \
-                                                              -var "certificatePassword=${TF_VAR_certificate_password}" \
-                                                              -var "certificateFile=${params.environmentLevel}dihiaccert.pfx" \
-                                                              -var "keyVaultName=${params.keyVaultName}" \
-                                                              -var "iacCertificateName=${params.iacCertificateName}" \
-                                                              ./environment/dataIntelligencePlatform/DIH_KeyVault
+                                                               -var-file ./Learning/Key_Vault/devinput.vars \
+                                                               ./Learning/Key_Vault
                      """
-
-                    }
+                  }
             }
          }
       }
-   }
-}
+   
