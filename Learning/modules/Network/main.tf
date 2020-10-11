@@ -4,7 +4,7 @@ resource "azurerm_virtual_network" "vn" {
   location      = var.virtual_network_location
 
   subnet {
-    subnet_name    = var.subnet_name
+    name    = var.subnet_name
     address_prefix = "10.1.2.0/25"
   }
 }
