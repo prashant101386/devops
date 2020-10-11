@@ -22,6 +22,10 @@ resource "azurerm_app_service" "asp" {
     java_container         = "TOMCAT"
     java_container_version = "9.0"
   }
+
+  identity{
+    type = "SystemAssigned"
+  }
 }
 
 
