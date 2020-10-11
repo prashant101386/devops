@@ -26,12 +26,12 @@ node ('JC') {
                            terraform init \
                                        -reconfigure \
                                        -input=false \
-                                       ./Learning/Logic_App
+                                       ./Learning/Web_App
                      """
                      bat """
                            terraform ${params.ApplyOrDestroy} -auto-approve \
-                                                               -var-file ./Learning/Logic_App/devinput.vars \
-                                                               ./Learning/Logic_App
+                                                               -var-file ./Learning/Web_App/devinput.vars \
+                                                               ./Learning/Web_App
                      """
                   }
             }
