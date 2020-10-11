@@ -22,3 +22,7 @@ variable "tenant_id" {
 
 variable "resource_group_location" {}
 
+variable "app_service_plan" {}
+
+variable "app_service_name" {}
+
