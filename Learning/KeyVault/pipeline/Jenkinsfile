@@ -30,8 +30,8 @@ node ('JC') {
                      """
                      bat """
                            terraform ${params.ApplyOrDestroy} -auto-approve \
-                                                               -var-file ./Learning/Key_Vault/devinput.vars \
-                                                               ./Learning/Key_Vault
+                                                               -var-file ./Learning/KeyVault/devinput.vars \
+                                                               ./Learning/KeyVault
                      """
                   }
             }
