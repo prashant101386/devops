@@ -36,15 +36,7 @@ variable "sku" {
   description = ""
 }
 
-variable "tags" {
-  description = ""
-}
-
 variable "default_action" {
-  description = "(optional) describe your variable"
-}
-
-variable "ip_rules" {
   description = "(optional) describe your variable"
 }
 
