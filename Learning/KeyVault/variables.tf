@@ -28,3 +28,5 @@ variable "tenant_id" {
 variable "virtual_network_subnet_ids" {
   description = "(optional) describe your variable"
 }
+
+variable "location" {}
