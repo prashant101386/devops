@@ -7,20 +7,19 @@ provider "azurerm" {
   features{}
 }
 
-####################################################################Helper Modules
-
 ####################################################################Resource Group
-  module "shared_adf_resource_group" {
+  module "resource_group" {
   source = "../modules/resourceGroup"
 
   resource_group_name     = var.resource_group_name
   resource_group_location = var.resource_group_location
   }
-####################################################################Logic App
-  module "logic_app" {
+####################################################################App Service
+  module "app_service" {
   source = "../modules/logicApp"
 
-  logic_app_name          = var.logic_app_name
+  app_service_plan        = var.app_service_plan
+  app_service_name        = var.app_service_name
   resource_group_name     = module.shared_adf_resource_group.resource_group_name
   resource_group_location = module.shared_adf_resource_group.resource_group_location
 }

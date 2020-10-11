@@ -7,7 +7,11 @@ variable "resource_group_location" {
   default     = ["West US 2"]  
 }
 
-variable "logic_app_name" {
+variable "app_service_plan" {
   description = "Logic app name"
 }
+
+variable "app_service_name" {}
+
+
 
