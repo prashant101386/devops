@@ -36,5 +36,5 @@ module "App_service_access_policy" {
   secret_permissions        = ["get","list"]
   certificate_permissions   = []
   storage_permissions       = ["get", "list", "set"]
-
+}
 
