@@ -20,7 +20,7 @@ resource "azurerm_app_service" "asp" {
   site_config{
     java_version           = "1.8"
     java_container         = "TOMCAT"
-    java_container-version = "9.0"
+    java_container_version = "9.0"
   }
 }
 
