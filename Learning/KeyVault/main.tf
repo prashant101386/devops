@@ -7,19 +7,13 @@ provider "azurerm" {
   features{}
 }
 
-####################################################################Resource Group
-module "kv_resourcegroup" {
-  source = "../modules/resourceGroup"
-  resource_group_name     = var.resource_group_name
-  resource_group_location = var.resource_group_location
-}
 ####################################################################Key Vault
 module "key_vault" {
   source = "../modules/keyVault/keyVault"
 
   key_vault_name                  = var.keyVaultName
-  location                        = module.kv_resourcegroup.resource_group_location
-  resource_group_name             = module.kv_resourcegroup.resource_group_name
+  location                        = var.location
+  resource_group_name             = var.resource_group_name
   enabled_for_disk_encryption     = false
   enabled_for_template_deployment = true
   tenant_id                       = var.tenant_id
@@ -27,17 +21,18 @@ module "key_vault" {
   purge_protection_enabled        = true
   sku                             = "standard"
   default_action                  = "Deny"
-  ip_rules                        = var.ip_rules
   virtual_network_subnet_ids      = var.virtual_network_subnet_ids
   bypass                          = "AzureServices"
   }
-####################################################################Access Policies
 /*
+
+####################################################################Access Policies
+
     WARNING!!! Upon "apply" access policies must be initiated FEFORE the certificate is created. However, during "destroy"
           it must be disabled. Therefore, uncomment this section during an apply and comment it out during a destroy
           A conditional statement of count, or for_each would be better, but they are not currently implemented in terraform
 
-*/
+
 module "service_principal_access_policy" {
         
     source = "../../../modules/keyVault/accessPolicy"
@@ -90,4 +85,4 @@ module "keyvault_diagnostic_settings" {
   metric_category           = "AllMetrics"
 }
 
-
+*/

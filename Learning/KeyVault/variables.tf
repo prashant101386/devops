@@ -8,21 +8,6 @@ variable "key_vault_name"{
   type = string
 }
 
-variable "sp_access_object_id"{
-  description = "Passed in as a parameter from the <env>input.vars file"
-  type = string
-}
-
-variable "certificate_name"{
-  description = "Passed in as a parameter from the <env>input.vars file"
-  type = string
-}
-
-variable "diagnostic_setting_name"{
-  description = "Passed in as a parameter from the <env>input.vars file"
-  type = string
-}
-
 variable "keyVaultName" {
   description = "Passed as a parameter from Jenkins to Terraform"
 }
