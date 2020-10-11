@@ -19,7 +19,8 @@ module "virtual_network" {
   source = "../modules/Network"
 
   virtual_network_name     = var.virtual_network_name
-  resource_group_name = module.networking.resource_group_name
+  resource_group_name      = module.networking.resource_group_name
+  resource_group_location  = var.resource_group_location
   virtual_network_location = var.resource_group_location
   subnet_name              = var.subnet_name
 }
