@@ -20,8 +20,8 @@ provider "azurerm" {
 
   app_service_plan        = var.app_service_plan
   app_service_name        = var.app_service_name
-  resource_group_name     = module.shared_adf_resource_group.resource_group_name
-  resource_group_location = module.shared_adf_resource_group.resource_group_location
+  resource_group_name     = module.resource_group.resource_group_name
+  resource_group_location = module.resource_group.resource_group_location
 }
 
 
