@@ -25,3 +25,5 @@ variable "app_service_plan" {}
 
 variable "app_service_name" {}
 
+variable "key_vault_id" {}
+
