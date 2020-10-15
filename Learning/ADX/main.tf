@@ -7,18 +7,10 @@ provider "azurerm" {
   features{}
 }
 
-####################################################################Permissions
-module "apply_dih_contributor" {
-  source = "../../../modules/roleAssignment"
-
-  scope = "subscriptions/${var.subscription_id}/resourceGroups/${var.resource_group_name}"
-  role_definition_name = "Contributor"
-  principal_id = var.contributor_access_objid
-}
 ####################################################################Kusto Cluster
   
   module "kusto_cluster" {
-  source = "../../../modules/dataExplorer/cluster"
+  source = "../modules/dataExplorer/cluster"
 
     cluster_name = var.kusto_cluster_name
     resource_group_location = module.resource_group.resource_group_location
