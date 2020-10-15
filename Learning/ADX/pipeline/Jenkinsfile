@@ -1,4 +1,4 @@
-node ('DIPLATFORM_STNAACVDL237_ITC-NM') {
+node ('JC') {
 
    stage('Init') {
       checkout scm
@@ -13,38 +13,28 @@ node ('DIPLATFORM_STNAACVDL237_ITC-NM') {
          string(credentialsId: 'clientID', variable: 'TF_VAR_client_id'),
          string(credentialsId: 'clientSecret', variable: 'TF_VAR_client_secret'),
          string(credentialsId: 'tenantID', variable: 'TF_VAR_tenant_id'),
-         string(credentialsId: 'backEndStateAccessKey', variable: 'TF_VAR_backend_state'),
          string(credentialsId: 'subscriptionID', variable: 'ARM_SUBSCRIPTION_ID'),
          string(credentialsId: 'clientID', variable: 'ARM_CLIENT_ID'),
          string(credentialsId: 'clientSecret', variable: 'ARM_CLIENT_SECRET'),
          string(credentialsId: 'tenantID', variable: 'ARM_TENANT_ID'),
       ]){
-         withEnv(["http_proxy=http://appproxy.us164.corpintra.net:3128"]){
-            withEnv(["https_proxy=http://appproxy.us164.corpintra.net:3128"]){
-                  withEnv(["TF_LOG=ERROR"]){
-                     sh 'az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID'
-                     sh 'az account set --subscription=$ARM_SUBSCRIPTION_ID'
+                     withEnv(["TF_LOG=ERROR"]){
+                     bat "az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID"
+                     bat "az account set --subscription=$ARM_SUBSCRIPTION_ID"
 
-                     sh """
+                     bat """
                            terraform init \
                                        -reconfigure \
                                        -input=false \
-                                       -backend-config="access_key=$TF_VAR_backend_state" \
-                                       -backend-config="resource_group_name=${params.besResourceGroup}" \
-                                       -backend-config="storage_account_name=${params.besStorageAccount}" \
-                                       -backend-config="container_name=${params.besContainerName}" \
-                                       -backend-config="key=${params.besKey}" \
-                                       ./environment/dataIntelligencePlatform/DIH_ADX
+                                       ./Learning/ADX
                      """
-                     sh """
+                     bat """
                            terraform ${params.ApplyOrDestroy} -auto-approve \
-                                                               -var-file ./environment/dataIntelligencePlatform/DIH_ADX/${params.environmentLevel}input.vars \
-                                                               -var "access_key=${TF_VAR_backend_state}" \
-                                                               ./environment/dataIntelligencePlatform/DIH_ADX
+                                                               -var-file ./Learning/ADX/devinput.vars \
+                                                               ./Learning/ADX
                      """
                   }
             }
          }
       }
-   }
-}
+   
