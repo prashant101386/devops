@@ -2,6 +2,7 @@
 # Core variables common to all modules
 variable "subscription_id" {}
 variable "resource_group_name" {}
+variable "resource_group_location" {}
 variable "bes_resource_group_name" {}
 variable "bes_account_name" {}
 variable "backend_state" {}
