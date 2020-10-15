@@ -13,8 +13,8 @@ provider "azurerm" {
   source = "../modules/dataExplorer/cluster"
 
     cluster_name = var.kusto_cluster_name
-    resource_group_location = module.resource_group.resource_group_location
-    resource_group_name = module.resource_group.resource_group_name
+    resource_group_location = var.resource_group_location
+    resource_group_name = var.resource_group_name
 
     #sku = "standard_D13_v2"
     sku = "Dev(No SLA)_Standard_D11_v2"
