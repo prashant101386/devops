@@ -8,7 +8,4 @@ resource "azurerm_kusto_cluster" "cluster" {
     capacity = var.capacity
   }
 
-  identity {
-    type = "SystemAssigned"
-  }
 }
