@@ -30,7 +30,7 @@ node ('JC') {
                      """
                      bat """
                            terraform ${params.ApplyOrDestroy} -auto-approve \
-                                                               -var-file ./Learning/ADX/devinput.vars \
+                                                               -var-file ./Learning/ADX/sbxinput.vars \
                                                                ./Learning/ADX
                      """
                   }
