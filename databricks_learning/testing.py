@@ -1,7 +1,7 @@
 # Databricks notebook source
 filePath = "dbfs:/FileStore/tables/readme_spark-2.txt" # path in Databricks File System
 lines = sc.textFile(filePath) # read the file into the cluster
-lines.take(4) # display first 10 lines in the file
+lines.take(3) # display first 10 lines in the file
 
 # COMMAND ----------
 
